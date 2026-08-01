@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ismael Diallo — Data Analyst & Engineer</title>
+<meta name="description" content="Portfolio d'Ismael Diallo, Data Analyst / Engineer — Pipelines ETL, Analyse de données, Machine Learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0C11;
+    --bg-soft: #0F1219;
+    --surface: #14171F;
+    --surface-hover: #191D27;
+    --ink: #EDEFF4;
+    --ink-soft: #98A0B3;
+    --ink-faint: #5C6376;
+    --line: #232837;
+
+    --accent: #5B8DEF;
+    --accent-soft: rgba(91,141,239,0.12);
+
+    --c-orch: #8B7CF6;
+    --c-extr: #2DD4BF;
+    --c-tran: #FBBF24;
+    --c-load: #5B8DEF;
+    --c-visu: #34D399;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    --maxw: 1000px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(91,141,239,0.10), transparent),
+      radial-gradient(ellipse 700px 400px at 100% 10%, rgba(45,212,191,0.06), transparent),
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+  ::selection{ background: var(--accent-soft); color: var(--ink); }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(10,12,17,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    max-width: var(--maxw); margin: 0 auto; padding: 16px 28px;
+    display:flex; align-items:center; justify-content: space-between;
+  }
+  .nav-logo{ font-family: var(--font-display); font-weight: 600; font-size: 1rem; display:flex; align-items:center; gap:8px; }
+  .nav-logo .dot{ width:8px; height:8px; border-radius:50%; background: var(--c-visu); box-shadow: 0 0 8px var(--c-visu); }
+  .nav-links{ display:flex; gap: 24px; list-style:none; margin:0; padding:0; font-size: 0.85rem; font-family: var(--font-mono); }
+  .nav-links a{ text-decoration:none; color: var(--ink-soft); transition: color .15s ease; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+  .nav-links a:hover{ color: var(--ink); }
+  .nav-links a.active{ color: var(--ink); border-bottom-color: var(--accent); }
+  @media (max-width: 640px){ .nav-links{ gap: 12px; font-size: 0.7rem; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 72px 0 40px; }
+  .hero-grid{ display:flex; align-items:center; gap: 40px; }
+  .hero-photo{
+    flex: 0 0 auto; width: 128px; height: 128px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--line);
+    overflow: hidden; display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 0 4px rgba(91,141,239,0.08);
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit: cover; display:block; }
+  .hero-photo .fallback{ font-family: var(--font-display); font-size: 2rem; color: var(--accent); font-weight: 600; }
+  .hero-text{ flex: 1; min-width: 0; }
+  .eyebrow{
+    font-family: var(--font-mono); font-size: 0.76rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--c-visu); margin: 0 0 10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{ content:'●'; font-size: 0.6rem; }
+  h1.name{
+    font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 2.9rem);
+    font-weight: 600; margin: 0 0 6px; letter-spacing: -0.01em; color: #fff;
+  }
+  .role{ font-family: var(--font-display); font-size: 1.1rem; color: var(--accent); font-weight: 500; margin: 0 0 8px; }
+  .meta-line{ font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); margin: 0 0 18px; }
+  .bio{ color: var(--ink-soft); max-width: 62ch; font-size: 0.96rem; margin: 0 0 22px; }
+  .contact-row{ display:flex; flex-wrap: wrap; gap: 10px; }
+  .pill-link{
+    display:inline-flex; align-items:center; gap:6px; padding: 8px 14px;
+    border-radius: 8px; border: 1px solid var(--line); background: var(--surface);
+    text-decoration:none; font-size: 0.84rem; font-family: var(--font-mono); color: var(--ink-soft);
+    transition: border-color .15s ease, background .15s ease, color .15s ease;
+  }
+  .pill-link:hover{ border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+
+  @media (max-width: 640px){
+    .hero-grid{ flex-direction: column; text-align:center; align-items:center; }
+    .bio{ max-width: none; }
+    .contact-row{ justify-content:center; }
+    .eyebrow{ justify-content:center; }
+  }
+
+  /* ---------- KPI STRIP (signature) ---------- */
+  .kpi-strip{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; margin-top: 36px;
+  }
+  .kpi{
+    background: var(--surface); padding: 18px 16px; position:relative;
+  }
+  .kpi::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:2px; background: var(--kc);
+  }
+  .kpi .val{ font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; color: #fff; line-height:1; }
+  .kpi .lbl{ font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 6px; }
+  @media (max-width: 640px){
+    .kpi-strip{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 64px 0; border-top: 1px solid var(--line); }
+  .section-head{ display:flex; align-items: baseline; gap: 14px; margin-bottom: 34px; }
+  .section-num{ font-family: var(--font-mono); color: var(--ink-faint); font-size: 0.8rem; }
+  h2{ font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; margin:0; color: #fff; }
+
+  /* ---------- PARCOURS ---------- */
+  .flow{ display:flex; align-items: flex-start; gap: 0; }
+  .flow-step{ flex:1; position: relative; padding-top: 30px; text-align: left; padding-right: 14px; }
+  .flow-step::before{
+    content:''; position:absolute; top: 6px; left:0; width: 14px; height: 14px;
+    border-radius: 50%; background: var(--dot); box-shadow: 0 0 10px var(--dot);
+  }
+  .flow-step::after{
+    content:''; position:absolute; top: 12px; left: 14px; width: 100%; height: 2px; background: var(--line);
+  }
+  .flow-step:last-child::after{ display:none; }
+  .flow-step h3{
+    font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--dot); margin: 0 0 6px;
+  }
+  .flow-step p{ margin:0; font-size: 0.86rem; color: var(--ink-soft); }
+  .flow-step .when{ display:block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); margin-top: 6px; }
+
+  @media (max-width: 800px){
+    .flow{ flex-direction: column; gap: 26px; }
+    .flow-step::after{ display:none; }
+    .flow-step{ padding-right: 0; }
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .xp-item{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px 24px; margin-bottom: 16px;
+  }
+  .xp-item:last-child{ margin-bottom: 0; }
+  .xp-head{ display:flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .xp-head h3{ font-family: var(--font-display); font-size: 1.02rem; margin: 0; font-weight: 600; color: #fff; }
+  .xp-meta{ font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-faint); white-space: nowrap; }
+  .xp-list{ margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 0.9rem; }
+  .xp-list li{ margin-bottom: 6px; }
+  .xp-list li:last-child{ margin-bottom: 0; }
+  .xp-list strong{ color: var(--ink); }
+  .xp-list li::marker{ color: var(--accent); }
+
+  /* ---------- STACK ---------- */
+  .stack-groups{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .stack-group{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px;
+  }
+  .stack-group h3{
+    font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--ink-faint); margin: 0 0 12px;
+  }
+  .tag-row{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .tag{
+    font-family: var(--font-mono); font-size: 0.8rem; padding: 5px 10px; border-radius: 6px;
+    background: var(--bg-soft); border: 1px solid var(--line); color: var(--ink-soft);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .projects{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .card{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px;
+    display:flex; flex-direction: column; gap: 12px; position: relative; overflow:hidden;
+    transition: border-color .15s ease, transform .15s ease, background .15s ease;
+  }
+  .card::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--catclr);
+  }
+  .card:hover{ border-color: var(--catclr); transform: translateY(-2px); background: var(--surface-hover); }
+  .card-tag{ font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--catclr); }
+  .card h3{ font-family: var(--font-display); font-size: 1.08rem; margin: 0; font-weight: 600; color: #fff; }
+  .card p{ margin:0; font-size: 0.87rem; color: var(--ink-soft); flex: 1; }
+  .card .tag-row{ margin-top: 4px; }
+  .card .tag{ font-size: 0.72rem; padding: 3px 8px; }
+  .card-link{
+    margin-top: 6px; font-family: var(--font-mono); font-size: 0.82rem; text-decoration: none; color: var(--ink);
+    display:inline-flex; align-items:center; gap: 6px; border-bottom: 1px solid var(--ink-faint); align-self: flex-start; padding-bottom: 1px;
+  }
+  .card-link:hover{ color: var(--catclr); border-color: var(--catclr); }
+
+  /* ---------- FORMATION ---------- */
+  .edu-item{
+    display:flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding: 16px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface);
+    margin-bottom: 12px;
+  }
+  .edu-item:last-child{ margin-bottom: 0; }
+  .edu-item h3{ font-family: var(--font-display); font-size: 0.98rem; margin: 0 0 4px; font-weight: 600; color: #fff; }
+  .edu-item p{ margin: 0; font-size: 0.84rem; color: var(--ink-soft); font-style: italic; }
+  .edu-meta{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faint); white-space: nowrap; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding: 56px 0 60px; border-top: 1px solid var(--line); }
+  .footer-inner{ display:flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+  footer h2{ margin-bottom: 8px; }
+  footer .bio{ margin-bottom: 20px; }
+  .footer-meta{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faint); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .card{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="dot"></span>Ismael Diallo</div>
+    <ul class="nav-links">
+      <li><a href="#parcours" data-tab="parcours">Parcours</a></li>
+      <li><a href="#experience" data-tab="experience">Expérience</a></li>
+      <li><a href="#stack" data-tab="stack">Compétences</a></li>
+      <li><a href="#projets" data-tab="projets" class="active">Projets</a></li>
+      <li><a href="#formation" data-tab="formation">Formation</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" style="border-top:none; padding-top:72px;">
+    <div class="hero-grid">
+      <div class="hero-photo">
+        <img src="assets/photo.jpg" alt="Photo d'Ismael Diallo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="fallback" style="display:none;">ID</div>
+      </div>
+      <div class="hero-text">
+        <p class="eyebrow">Data Analyst → Data Engineer</p>
+        <h1 class="name">Ismael Diallo</h1>
+        <p class="role">Data Analyst / Engineer</p>
+        <p class="meta-line">Permis B · Mobilité : France</p>
+        <p class="bio">
+          Actuellement en apprentissage au poste d'assistant d'analyse de données au sein de SODIS, filiale du Groupe
+          Madrigall, je suis titulaire d'une Licence en Data Mining. Après une Licence en Économie Appliquée, j'ai
+          décidé de m'orienter vers cette licence professionnelle pour acquérir des compétences liées à la data.
+          À partir de septembre 2026, j'intègre un Mastère
+          en IA &amp; Big Data et j'occuperai un poste de Data Engineer au sein de la même structure — ce qui portera
+          mon expérience à 3 ans, d'abord en tant qu'Analyst puis Data Engineer.
+        </p>
+        <div class="contact-row">
+          <a class="pill-link" href="mailto:dialloismael012@gmail.com">✉ dialloismael012@gmail.com</a>
+          <a class="pill-link" href="tel:+33689952006">☎ +33 6 89 95 20 06</a>
+          <a class="pill-link" href="https://github.com/dialloismael012-ai" target="_blank" rel="noopener">↳ GitHub</a>
+          <a class="pill-link" href="https://www.linkedin.com/in/ismael-diallo-b35a2b27a" target="_blank" rel="noopener">↳ LinkedIn</a>
+          <a class="pill-link" href="assets/CV_Ismael_Diallo.pdf" target="_blank" rel="noopener">⇩ CV (PDF)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi" style="--kc: var(--c-orch);"><div class="val">3 ans</div><div class="lbl">Expérience cumulée</div></div>
+      <div class="kpi" style="--kc: var(--c-extr);"><div class="val">6</div><div class="lbl">Projets data</div></div>
+      <div class="kpi" style="--kc: var(--c-tran);"><div class="val">9+</div><div class="lbl">Outils maîtrisés</div></div>
+      <div class="kpi" style="--kc: var(--c-load);"><div class="val">2026</div><div class="lbl">Mastère IA &amp; Big Data</div></div>
+    </div>
+  </section>
+
+  <!-- ============ PARCOURS ============ -->
+  <section id="parcours" class="tab-panel" style="display:none;">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Parcours</h2>
+    </div>
+    <div class="flow">
+      <div class="flow-step" style="--dot: var(--c-orch);">
+        <h3>Licence Économie</h3>
+        <p>Licence Économie Appliquée — Université d'Angers.</p>
+        <span class="when">2023 – 2025</span>
+      </div>
+      <div class="flow-step" style="--dot: var(--c-extr);">
+        <h3>Licence Pro Data Mining</h3>
+        <p>Université Gustave Eiffel — statistique, analyse multidimensionnelle, bases de données.</p>
+        <span class="when">2025 – 2026</span>
+      </div>
+      <div class="flow-step" style="--dot: var(--c-tran);">
+        <h3>Alternance Data Analyst</h3>
+        <p>Groupe Madrigall (SODIS) — ETL, industrialisation, dashboards Power BI / Excel.</p>
+        <span class="when">En cours</span>
+      </div>
+      <div class="flow-step" style="--dot: var(--c-load);">
+        <h3>Mastère Big Data &amp; IA</h3>
+        <p>Sup de Vinci Paris La Défense — écosystème Big Data, architectures distribuées, Cloud, IA.</p>
+        <span class="when">2026 – 2028</span>
+      </div>
+      <div class="flow-step" style="--dot: var(--c-visu);">
+        <h3>Analyst &amp; Engineer</h3>
+        <p>Poursuite en alternance sur un poste de Data Engineer — pipelines, orchestration, industrialisation.</p>
+        <span class="when">Sept. 2026 →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" class="tab-panel" style="display:none;">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Expériences professionnelles</h2>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-head">
+        <h3>Groupe Madrigall (SODIS) — Alternance Data Analyst / Engineer</h3>
+        <span class="xp-meta">Paris · En cours</span>
+      </div>
+      <ul class="xp-list">
+        <li><strong>Ingénierie des données &amp; industrialisation (ETL) :</strong> conception d'un système automatique d'extraction et de récupération de données depuis SAP, éliminant les processus manuels.</li>
+        <li><strong>Modélisation &amp; qualité :</strong> scripts Python avancés pour nettoyer, structurer et injecter de grands volumes de données dans une base PostgreSQL.</li>
+        <li><strong>Centralisation de flux :</strong> intégration et fiabilisation de flux hétérogènes (CRM, SAP, BW) vers un référentiel unique.</li>
+        <li><strong>Gouvernance &amp; fiabilisation :</strong> contrôles de cohérence automatiques et réguliers pour garantir qualité et intégrité des données.</li>
+        <li><strong>Documentation technique :</strong> rédaction systématique des procédures de nos différents processus, pipelines et structures de données, afin d'en assurer la maintenabilité et la transmission.</li>
+        <li><strong>Analyse &amp; accompagnement projets :</strong> tableaux de bord interactifs (Power BI, Excel) et études statistiques pour le pilotage de la performance.</li>
+      </ul>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-head">
+        <h3>Université d'Angers — Stage Gestion &amp; Structuration de bases de données</h3>
+        <span class="xp-meta">Angers · 2025</span>
+      </div>
+      <ul class="xp-list">
+        <li><strong>Gestion de bases :</strong> administration et mise à jour des référentiels de données via le logiciel Apogée.</li>
+        <li><strong>Automatisation :</strong> outils sous Excel (VBA) pour sécuriser la saisie, contrôler la cohérence des dossiers et optimiser les temps de traitement.</li>
+      </ul>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-head">
+        <h3>Département de Maine-et-Loire — Secteur santé publique</h3>
+        <span class="xp-meta">Angers · 2025</span>
+      </div>
+      <ul class="xp-list">
+        <li>Encadrement éducatif et social d'enfants et adolescents placés. Rigueur administrative, gestion des priorités sous pression, sens aigu des responsabilités.</li>
+      </ul>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-head">
+        <h3>Engagement associatif — Accueil et accompagnement des étudiants guinéens</h3>
+        <span class="xp-meta">Angers · 2024</span>
+      </div>
+      <ul class="xp-list">
+        <li>Gestion des démarches administratives complexes, communication transversale et organisation d'événements d'intégration.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ STACK ============ -->
+  <section id="stack" class="tab-panel" style="display:none;">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Compétences &amp; outils</h2>
+    </div>
+    <div class="stack-groups">
+      <div class="stack-group">
+        <h3>Bases de données &amp; stockage</h3>
+        <div class="tag-row">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Snowflake (auto-formation)</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <h3>Développement &amp; flux (ETL)</h3>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas / NumPy</span>
+          <span class="tag">SQLAlchemy</span>
+          <span class="tag">R</span>
+          <span class="tag">SAS</span>
+          <span class="tag">Apache Airflow</span>
+          <span class="tag">API / ODBC</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <h3>Data visualisation &amp; plateformes</h3>
+        <div class="tag-row">
+          <span class="tag">Power BI (DAX)</span>
+          <span class="tag">Dataiku (DSS)</span>
+          <span class="tag">Excel (VBA, Power Query)</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <h3>Compétences visées (Mastère)</h3>
+        <div class="tag-row">
+          <span class="tag">AWS</span>
+          <span class="tag">Hadoop</span>
+          <span class="tag">Spark</span>
+          <span class="tag">Architectures distribuées</span>
+          <span class="tag">Cloud Computing</span>
+          <span class="tag">IA appliquée</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJETS ============ -->
+  <section id="projets" class="tab-panel" style="border-top:none;">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Projets</h2>
+    </div>
+    <div class="projects">
+
+      <div class="card" style="--catclr: var(--c-orch);">
+        <span class="card-tag">Data Engineering</span>
+        <h3>Pipeline ETL automatisé — Club Med</h3>
+        <p>
+          Automatisation du traitement quotidien de données touristiques brutes pour alimenter un tableau de bord d'aide
+          à la décision. Orchestration planifiée, nettoyage des données, chargement PostgreSQL et restitution Excel.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Airflow</span>
+          <span class="tag">Python / Pandas</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Excel</span>
+        </div>
+        <a class="card-link" href="https://github.com/dialloismael012-ai/Projet_dbt" target="_blank" rel="noopener">Voir le repo →</a>
+      </div>
+
+      <div class="card" style="--catclr: var(--c-orch);">
+        <span class="card-tag">Data Engineering</span>
+        <h3>Pipelines d'analyse — Données publiques (CPF)</h3>
+        <p>
+          Extraction, nettoyage et structuration de données ouvertes. Application de tests d'hypothèses statistiques
+          (Student, ANOVA, Chi²) pour valider la robustesse des modèles d'impact.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Tests statistiques</span>
+        </div>
+        <a class="card-link" href="https://github.com/dialloismael012-ai" target="_blank" rel="noopener">Voir le repo →</a>
+      </div>
+
+      <div class="card" style="--catclr: var(--c-extr);">
+        <span class="card-tag">Data Science</span>
+        <h3>Segmentation, classification &amp; modélisation prédictive</h3>
+        <p>
+          Analyse multivariée et classification non supervisée (K-means). Modélisation de flux d'événements rares via
+          la loi de Poisson pour anticiper les comportements de structures complexes.
+        </p>
+        <div class="tag-row">
+          <span class="tag">R</span>
+          <span class="tag">K-means</span>
+          <span class="tag">Loi de Poisson</span>
+        </div>
+        <a class="card-link" href="https://github.com/dialloismael012-ai/Google-Merchandise-Store" target="_blank" rel="noopener">Voir le repo →</a>
+      </div>
+
+      <div class="card" style="--catclr: var(--c-tran);">
+        <span class="card-tag">Statistiques</span>
+        <h3>Analyse multidimensionnelle</h3>
+        <p>
+          Étude de l'impact socio-économique et environnemental de la production et de la consommation de viande,
+          réalisée dans le cadre de la Licence Professionnelle Data Mining.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Statistiques</span>
+          <span class="tag">Analyse multidim.</span>
+        </div>
+        <a class="card-link" href="https://github.com/dialloismael012-ai/Analyse-Mul" target="_blank" rel="noopener">Voir le repo →</a>
+      </div>
+
+      <div class="card" style="--catclr: var(--c-tran);">
+        <span class="card-tag">Statistiques</span>
+        <h3>Projet Statistique</h3>
+        <p>
+          Analyse statistique d'un jeu de données professionnel, avec script de traitement et rapport d'étude complet
+          présentant méthodologie et résultats.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Statistiques</span>
+        </div>
+        <a class="card-link" href="https://github.com/dialloismael012-ai/STATISTIQUE" target="_blank" rel="noopener">Voir le repo →</a>
+      </div>
+
+      <div class="card" style="--catclr: var(--c-load);">
+        <span class="card-tag">Machine Learning</span>
+        <h3>Prédiction de prix automobile</h3>
+        <p>
+          Modèle de Machine Learning pour prédire le prix de véhicules à partir d'un jeu de données structuré,
+          incluant nettoyage, feature engineering et évaluation du modèle.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Pandas</span>
+        </div>
+        <a class="card-link" href="https://github.com/dialloismael012-ai/Projet_Automobile-" target="_blank" rel="noopener">Voir le repo →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FORMATION ============ -->
+  <section id="formation" class="tab-panel" style="display:none;">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Formation</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div>
+          <h3>Mastère Big Data &amp; Intelligence Artificielle — Sup de Vinci Paris La Défense</h3>
+          <p>Formation en ingénierie des données massives, architectures distribuées et IA (en préparation)</p>
+        </div>
+        <span class="edu-meta">2026 – 2028</span>
+      </div>
+      <div class="edu-item">
+        <div><h3>Licence Pro Data Mining — Université Gustave Eiffel</h3></div>
+        <span class="edu-meta">2025 – 2026</span>
+      </div>
+      <div class="edu-item">
+        <div><h3>Licence Économie Appliquée — Université d'Angers</h3></div>
+        <span class="edu-meta">2023 – 2025</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap footer-inner">
+    <div>
+      <h2>Travaillons ensemble</h2>
+      <p class="bio">Disponible pour des opportunités en data analyse et data engineering.</p>
+      <div class="contact-row">
+        <a class="pill-link" href="mailto:dialloismael012@gmail.com">✉ dialloismael012@gmail.com</a>
+        <a class="pill-link" href="tel:+33689952006">☎ +33 6 89 95 20 06</a>
+        <a class="pill-link" href="https://github.com/dialloismael012-ai" target="_blank" rel="noopener">↳ GitHub</a>
+        <a class="pill-link" href="https://www.linkedin.com/in/ismael-diallo-b35a2b27a" target="_blank" rel="noopener">↳ LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-meta">Ismael Diallo — 2026</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var tabs = document.querySelectorAll('.tab-panel');
+    var links = document.querySelectorAll('.nav-links a[data-tab]');
+
+    function showTab(id){
+      tabs.forEach(function(el){
+        el.style.display = (el.id === id) ? '' : 'none';
+      });
+      links.forEach(function(a){
+        a.classList.toggle('active', a.dataset.tab === id);
+      });
+    }
+
+    links.forEach(function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        showTab(this.dataset.tab);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
